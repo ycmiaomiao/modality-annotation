@@ -8,40 +8,12 @@ import re
 import nltk
 
 """
-1. The goal is to create a table that stores the following information:
+The goal is to create a dataframe that stores the following information:
 for each annotated modal:
           its span and the id of the file that contains it, 
           the annotators who (is supposed to) annotated this item,
           modal type by each annotator,
           the context in which it appears (current sentence, previous sentence, and following sentence)
-The span, annotator and modal type can be directly read from the post-processed xml files;
-What is tricky is that some modals are not double annotated, and there will be a missing entry in the xmls
-[we need to collect the basic information, and do some "normalizations" afterwards]
-
-For the contexts,we need to locate the corresponding basedata file,
-and use the span of the modal as an anchor to find the preceeding and following sentence boundaries
-[This can be done simultaneously with the basic task]
-
-------
-Problems:
-1. It seems like there are redundant data in the basic table. Some 
-How to solve? Use pandas.DataFrame.drop_duplicates() #only unique rows are dropped in a new data frame. Pickle that out
-
-2. Some modals are only single annotated. We need to give them a second value: NONE
-How to do that?
-a. for primaryKey, if there is only one entry, duplicate it.
-          How to? for key in df['primaryKey']:key
-b. then subsitute the modal type as NONE,
-and the Author as AUTO
-
-OK, does it matter? why do we need to normalize the data?
-------
-go ahead and get the next step done!
-------
-Next step is to extract the contexts in which the markable is used. current, previous and following sentence 
-we will need a column called currentSentence, leftSentence, and rightSentence. the last two could be empty
-
-
 """
 
 
@@ -55,7 +27,7 @@ if __name__=="__main__":
           modalType = [] # the value of modality type selected by the annotator
           lemma = [] # the lemma of the annotated markable
 
-          # loop through the files to collect information as listed above
+	  # ---- collecting information for each result file ---- 
           for root, dirs,files in os.walk(data):
                     for f in files:
                               fullname=join(root,f)
@@ -88,6 +60,6 @@ if __name__=="__main__":
 
           print (dataFrame.head())
           #--------Pickle the dataframe ---------#
-#          saveDf = open('annoResult.dat','w')
-#          cPickle.dump(dataFrame,saveDf)
-#          saveDataframe.close()
+          saveDf = open('annoResult.dat','w')
+          cPickle.dump(dataFrame,saveDf)
+          saveDataframe.close()
