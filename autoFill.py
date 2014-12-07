@@ -2,11 +2,7 @@
 #-*- coding: utf-8 -*-
 
 """
-This program serves to calculate the inter-annotator agreement for the first round of GME annotation
-To calculate the IAA, it is necessary to normalize the data, so that each item is double annotated,
-i.e. make sure that there are equal number of ([c]coder,[i]item, [k]category) triples for each coder
-
-The Python nltk.metrics() package is utilized
+some items have single annotation. this program fillup the missing annotation to make sure every item is "double" annotated.
           
 """
 import os.path
