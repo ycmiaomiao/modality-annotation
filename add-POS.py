@@ -3,7 +3,7 @@
 
 """
 - This code adds POS as an attribute to word elements in basedata
-- Basedata are those end with _words.xml. I used the files in folder postprocessed_data/words_en
+- Basedata: files end with "_words.xml". 
 - Chuncks	
     1. Converts xml files into plain texts
 	[ElementTree module is used to parse the xmls]

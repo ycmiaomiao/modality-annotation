@@ -2,7 +2,7 @@
 #-*- coding: utf-8 -*-
 
 """
-some items have single annotation. this program fillup the missing annotation to make sure every item is "double" annotated.
+some items have single annotation. this program fills up the missing annotation to make sure every item is "double" annotated.
           
 """
 import os.path
@@ -56,7 +56,6 @@ def addAnno(df,SingleAnnoItems):
 
 
 if __name__ == "__main__":
-          print ('beginning of new program')
 
           # --- read in the dataframe ---
           df = pd.read_pickle('annoResult_contexts.dat')
@@ -80,6 +79,6 @@ if __name__ == "__main__":
           # testing the results 
           gg=df.groupby('primaryKey').groups
           sai=[key for key in gg if len(gg[key])==1]
-          print sai
+          print sai #after auto-fill, there sai should be empty
 
           print 'done!'

@@ -36,10 +36,11 @@ import re
 from xml.etree import ElementTree as ET
 import nltk
 from nltk.util import ngrams
+import codecs
 
 if __name__=="__main__":
         
-        dfraw = pd.read_pickle('annoResult.dat')
+        dfraw = pd.read_pickle('MOMA_1to100.dat')
 
         # ----- drop duplicated rows ------
         df=dfraw.drop_duplicates()
@@ -47,7 +48,7 @@ if __name__=="__main__":
 
 
 	# ----- get the starting point of the markables ------
-        path=('./postprocessed/words_en/')
+        path=('./postprocessed/Basedata/')
         basefile=path+df['file']+'_words.xml'
 	df['basefile']=basefile
 	spanStart=[]
@@ -148,6 +149,6 @@ if __name__=="__main__":
 
 
 #----- pickle the updated dataframe
-saveDf=open('annoResult_contexts.dat','w')
+saveDf=codecs.open('MOMA_context.dat','w','utf8')
 cPickle.dump(df,saveDf)
 saveDf.close()
